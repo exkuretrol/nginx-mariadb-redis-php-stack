@@ -1,0 +1,49 @@
+services:
+  db:
+    image: mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: notSecureChangeMe
+      MYSQL_DATABASE: web
+      MYSQL_USER: web
+      MYSQL_PASSWORD: web
+    volumes:
+      - ./db:/var/lib/mysql
+
+  redis:
+    image: redis
+    restart: unless-stopped
+    command: redis-server --save 20 1 --requirepass W626RCy@LhsWRqyDW3U*!Q!PSLNrSjt6
+    volumes:
+      - ./redis:/data
+      - ./config/redis.conf:/usr/local/etc/redis/redis.conf
+
+  phpmyadmin:
+    image: phpmyadmin
+    restart: unless-stopped
+    environment:
+      - PMA_HOST=db
+      - PMA_PORT=3306
+
+  npm:
+    image: 'jc21/nginx-proxy-manager'
+    restart: unless-stopped
+    ports:
+      - 80:80
+      - 443:443
+      - 81:81
+    volumes:
+      - ./npm/data:/data
+      - ./npm/letsencrypt:/etc/letsencrypt
+
+  php:
+    build:
+      context: .
+      dockerfile: php.Dockerfile
+    restart: unless-stopped
+    environment:
+      XDEBUG_MODE: debug
+      XDEBUG_CONFIG: client_host=host.docker.internal client_port=9003
+    volumes:
+      - ./php:/var/www/html
+    
