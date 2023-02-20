@@ -1,0 +1,9 @@
+{
+    "tabWidth": 4,
+    "scripts": {
+        "prettier": "prettier"
+    },
+    "plugins": [
+        "prettier-plugin-tailwindcss"
+    ]
+}
