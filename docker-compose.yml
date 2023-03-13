@@ -46,4 +46,5 @@ services:
       XDEBUG_CONFIG: client_host=host.docker.internal client_port=9003
     volumes:
       - ./php:/var/www/html
+      - ./config/php.ini:/usr/local/etc/php/php.ini
     
