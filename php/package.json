@@ -1,0 +1,16 @@
+{
+    "name": "nginx-mariadb-redis-php-stack",
+    "version": "1.0.0",
+    "description": "",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "exkuretrol",
+    "license": "ISC",
+    "devDependencies": {
+        "@prettier/plugin-php": "^0.19.4",
+        "prettier": "^2.8.5",
+        "prettier-plugin-tailwindcss": "^0.2.3",
+        "tailwindcss": "^3.2.7"
+    }
+}
